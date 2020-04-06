@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPInfo</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/marker.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>IPInfo <div class="displayIP"></div> </h1>
+
+        <form>
+            <input autofocus name="ipAdress" placeholder="85.214.20.141">
+            <button>Suchen</button>
+        </form>
+
+        <div class="adress"></div>
+
+        <div class="maps">
+            <div id="basicMap"></div>
+        </div>
+
+        <div id="osm">
+            © <a href="http://www.openstreetmap.org">OpenStreetMap</a>
+            und <a href="http://www.openstreetmap.org/copyright">Mitwirkende</a>,
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/deed.de">CC-BY-SA</a>
+        </div>
+
+        <ul>
+            <a target="_blank" href="https://github.com/otsmr/ipinfo">
+                <li>Projekt auf Github</li>
+            </a>
+            <a target="_blank" href="https://oproj.de/privacy">
+                <li>Datenschutz</li>
+            </a>
+            <a target="_blank" href="https://oproj.de/imprint">
+                <li>Impressum</li>
+            </a>
+        </ul>
+
+    </div>
+
+    <script src="/js/tom.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="./js/openlayers.js"></script>
+
+</body>
+
+</html>

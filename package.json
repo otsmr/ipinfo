@@ -1,0 +1,19 @@
+{
+  "name": "ipinfo",
+  "version": "1.0.0",
+  "description": "Ein selbst gehostete Möglichkeit, IP-Adressen zu lokalisieren.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "author": "tsmr",
+  "license": "MIT",
+  "dependencies": {
+    "adm-zip": "^0.4.14",
+    "big-integer": "^1.6.48",
+    "express": "^4.17.1",
+    "ip2location-nodejs": "^8.3.0",
+    "node-downloader-helper": "^1.0.12",
+    "nodemon": "^2.0.2"
+  }
+}

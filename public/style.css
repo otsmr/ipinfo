@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html, body {
+    margin: 0;
+    background: #232323;
+}
+a {
+    text-decoration: none;
+}
+h1 {
+    text-align: center;
+    color: #aaa;
+    font-size: 25px;
+}
+.displayIP {
+    display: inline;
+    font-size: 16px;
+}
+
+form {
+    text-align: center;
+    margin: 0 0 23px;
+}
+
+input, button {
+    padding: 6px 10px;
+    font-size: 18px;
+    border-radius: 2px;
+    border: 2px solid #434343;
+    background: #232323;
+    color: #aaa;
+}
+
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: #2d2d2d;
+    border-radius: 6px;
+    box-shadow: 0 0 20px -12px #000;
+}
+
+.card > ul {
+    list-style: none;
+    padding: 0;
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    position: absolute;
+    bottom: -34px;
+    right: 0;
+}
+.card > ul li {
+    color: #444;
+    display: inline-block;
+    margin: 0 7px;
+}
+
+.adress {
+    text-align: center;
+    color: #aaa;
+}
+.adress ul {
+    padding: 0;
+    list-style: none;
+}
+
+.maps {
+    width: 100%;
+    height: 300px;
+}
+#basicMap {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: #0e0e0e;
+}
+#osm {
+    color: #aaa !important;
+    position: absolute;
+    bottom: 5px;
+    z-index: 6000000;
+    font-size: 9px;
+    right: 5px;
+}
+#osm a {
+    color: #aaa;
+}
+.olTileImage {
+    filter: grayscale(100%) invert(100%);
+}
