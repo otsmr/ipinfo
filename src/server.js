@@ -16,7 +16,7 @@ const binPath = __dirname + "/../bin/IP2LOCATION-LITE-DB9.IPV6.BIN";
 
 ip2loc.IP2Location_init(binPath);
 
-const getLocationForIP = (ip, callBack) => {
+const getLocationForIP = (ip, callBack, res) => {
 
     if (!ipRegEx.test(ip)) {
         return res.send({
@@ -67,6 +67,15 @@ const startServer = () => {
     let updateStatus = "Bitte warten";
 
     const app = express();
+    app.use(express.json());
+
+    app.use((err, req, res, next) => {
+        console.error(err.stack)
+        res.setHeader('Content-Type', 'application/json');
+        res.status(500).send(JSON.stringify({
+            error: 500
+        }))
+      })
 
     app.get("/update", (req, res) => {
 
@@ -91,27 +100,46 @@ const startServer = () => {
 
     })
 
-    app.get("/api/ip/:ip", (req, res) => {
+    app.post("/api/ip", (req, res) => {
 
         res.setHeader('Content-Type', 'application/json');
 
-        if (isUpdating) return res.send(JSON.stringify({
-            error: true,
-            message: updateStatus 
-        }));
+        const error = (msg) => {
+            return res.send(JSON.stringify({
+                error: true,
+                status: msg
+            })); 
+        }
 
-        let ip = req.params.ip;
+        if (isUpdating) return error(updateStatus);
+
+        const notAllowed = [
+            "::1",
+            "localhost",
+            "127.0.0.1"
+        ]
+
+        let ip = req.body.ip;
+
+        if (typeof ip !== "string" || ip === "") {
+            return error("Keine gültige IP-Adresse");
+        }
+
+        ip = ip.replace(/ /g, "g");
+        if (notAllowed.indexOf(ip) > -1 || ip.startsWith("127.0.0.")) {
+            return error("Keine gültige IP-Adresse"); 
+        }
 
         if (hostNameRegEx.test(ip)) {
             return dns.lookup(ip, (err, result) => {
                 getLocationForIP(result, (data) => {
                     res.send(JSON.stringify(data));
-                })
+                }, res)
             })
         }
         getLocationForIP(ip, (data) => {
             res.send(JSON.stringify(data));
-        })
+        }, res)
 
     })
 

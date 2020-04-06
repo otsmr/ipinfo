@@ -10,7 +10,7 @@ const api = async (method, url, callBack, body = {}) => {
         }
     }
 
-    if (method === "POST") options.body = body;
+    if (method === "POST") options.body = JSON.stringify(body);
 
     const rawResponse = await fetch(url, options);
     callBack(await rawResponse.json());
@@ -19,7 +19,7 @@ const api = async (method, url, callBack, body = {}) => {
 
 const loadIpData = (ipadress) => {
 
-    api("get", "/api/ip/" + ipadress, (json) => {
+    api("post", "/api/ip", (json) => {
         console.log(json);
 
         if (json.status === "OK") {
@@ -41,6 +41,8 @@ const loadIpData = (ipadress) => {
             elDisplayAdress.innerHTML = `${json.status}<br><br>`;
         }
 
+    }, {
+        ip: ipadress
     })
 
 }
