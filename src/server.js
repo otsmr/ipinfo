@@ -25,6 +25,11 @@ const getLocationForIP = (ip, callBack, res) => {
     }
 
     dns.lookupService(ip, 22, (err, hostname, service) => {
+        if (hostname === "localhost") {
+            return callBack({
+                error: true
+            });
+        }
         getLocationForIP2(ip, hostname, callBack);
     });
 
@@ -75,7 +80,7 @@ const startServer = () => {
         res.status(500).send(JSON.stringify({
             error: 500
         }))
-      })
+    })
 
     app.get("/update", (req, res) => {
 
@@ -116,7 +121,8 @@ const startServer = () => {
         const notAllowed = [
             "::1",
             "localhost",
-            "127.0.0.1"
+            "127.0.0.1",
+            "::ffff:127.0.0.1"
         ]
 
         let ip = req.body.ip;
